@@ -1,0 +1,29 @@
+﻿@model  Mvc6.Models.PersonViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="people-container">
+    <h2>Index</h2>
+    <div class="row">
+        <form method="get">
+            <div class="form-group">
+                <label for="seach">Search</label>
+                <input type="text" class="form-control" id="seach" name="searchtext" placeholder="Search by name..." />
+            </div>
+            <button class="btn btn-primary" type="submit">Seach</button>
+        </form>
+    </div>
+    <hr />
+    <div id="people-list" class="row">
+        @foreach (var person in Model.People)
+         {
+            @Html.Partial("_ListPeople", person)
+         }
+    </div>
+    <div class="row">
+        @Html.Partial("_CreateNewPerson")
+    </div>
+</div>
+

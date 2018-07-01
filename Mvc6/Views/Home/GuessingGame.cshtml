@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int numberGuess = 0;
+    if (Model != null)
+    {
+        numberGuess = Model;
+    }
+}
+
+<div class="row">
+    <h1>Guessing Game</h1>
+    <p>(Guessing without a number will reset the game)</p>
+</div>
+<div class="container col-md-12 form-container">
+    @if( Session["displayError"] != null)
+     {
+        <div class="row">
+            <p>@Session["displayError"]</p>
+        </div>
+     }
+    <div class="row">
+        <form action="" method="post">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="inputnumber">Your number:</label>
+                <input type="number" id="inputnumber" name="numberguess" class="form-control" value="" placeholder="Enter a number..." />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 no-left-padding">                        
+                <button type="submit" class="btn btn-primary">Guess!</button>
+            </div>
+        </div>                    
+    </form>
+    </div>    
+</div>
+@if(Session["timesGuessed"] != null)
+ {
+<div class="row col-md-12">
+    <p>You guessed @numberGuess</p>
+    @if(numberGuess > Convert.ToInt32(Session["randomNumber"]))
+     {
+        <p class="label label-info">Your guess was too high</p>
+     }
+    else if(numberGuess < Convert.ToInt32(Session["randomNumber"]))
+    {
+        <p class="label label-info">Your guess was too low</p>
+    }
+    else
+    {
+        <p class="label label-success">Your guess was right!</p>
+    }
+    <p>You've guessed @Convert.ToInt32(Session["timesGuessed"]) times!</p>
+</div>
+ }
+
