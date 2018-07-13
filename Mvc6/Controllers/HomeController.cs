@@ -13,7 +13,7 @@ namespace Mvc6.Controllers
 
         public ActionResult About()
         {
-            return View();
+            return PartialView();
         }
 
         public ActionResult Contact()

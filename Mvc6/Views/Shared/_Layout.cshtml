@@ -23,12 +23,18 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("About", "About","Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Projects", "Projects", "Home")</li>
                     <li>@Html.ActionLink("Fever Check", "Fevercheck", "Home")</li>
                     <li>@Html.ActionLink("Guessing Game", "GuessingGame", "Home")</li>
-                    <li>@Html.ActionLink("People", "Index", "People")</li>
+                    <li>@Ajax.ActionLink("People", "Index", "People", null, new AjaxOptions()
+                    {
+                        HttpMethod = "get",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "MainBody"
+
+                    }, new { @class = "navbar-text" }) </ li > )</li>
                 </ul>
             </div>
         </div>
@@ -44,5 +50,6 @@
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </body>
 </html>
