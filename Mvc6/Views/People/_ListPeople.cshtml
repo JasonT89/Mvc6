@@ -11,14 +11,16 @@
                 </div>
                 <div class="col-md-2">                  
                     @Ajax.ActionLink("Edit", "EditPeople", new { id = Model.Name },
-                       new AjaxOptions {
+                       new AjaxOptions
+                       {
                            UpdateTargetId = "info-panel-" + Model.Phonenumber,
                            InsertionMode = InsertionMode.Replace,
                            HttpMethod = "GET"
                        })
                     <span> | </span>
                     @Ajax.ActionLink("Delete", "Delete", new { id = Model.Name },
-                       new AjaxOptions {
+                       new AjaxOptions
+                       {
                            UpdateTargetId = "people-container",
                            InsertionMode = InsertionMode.ReplaceWith,
                            HttpMethod = "GET"

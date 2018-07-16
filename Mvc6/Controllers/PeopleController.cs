@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Net;
 
 namespace Mvc6.Controllers
 {
     public class PeopleController : Controller
-    {      
+    {       
         public ActionResult Index(string searchtext = null)
         {
             var peps = people
@@ -21,22 +22,21 @@ namespace Mvc6.Controllers
             return View(model);
         }
 
-         
-        public ActionResult Details(int id) {
+        public ActionResult Details(int id)
+        {
             return View();
         }
 
-        
-        public ActionResult Create() {
+        public ActionResult Create()
+        {
             return View();
         }
 
-        
         [HttpPost]
-        public ActionResult Create(Person person) {
+        public ActionResult Create(Person person)
+        {
             try
-            {
-                
+            {               
                 if (ModelState.IsValid) {
                     people.Add(
                         new Person {
@@ -54,10 +54,10 @@ namespace Mvc6.Controllers
             }
         }
 
-        public ActionResult EditPeople(string id) {
+        public ActionResult EditPeople(string id)
+        {
             if (Request.IsAjaxRequest()) {
-               
-
+                
                 Person match = people.Find(p => p.Name == id);
                 return PartialView("_EditPerson", match);
             }
@@ -66,21 +66,25 @@ namespace Mvc6.Controllers
             }
         }
 
-       
-        public ActionResult Edit(int id) {            
+        
+        public ActionResult Edit(int id)
+        {            
 
             return View();
         }
 
         [HttpPost]
         public ActionResult Edit([Bind(Include = "Name, City, Phonenumber")]Person person) {
-            try {
+            try
+            {
 
-                if (ModelState.IsValid) {
+                if (ModelState.IsValid)
+                {
 
                     Person match = people.Find(p => p.Name == person.Name);
 
-                    if (people.Contains(match)) {
+                    if (people.Contains(match))
+                    {
                         match.Phonenumber = person.Phonenumber;
                         match.City = person.City;
 
@@ -90,16 +94,18 @@ namespace Mvc6.Controllers
 
                 return new HttpStatusCodeResult((int)HttpStatusCode.BadRequest, "Missing data");
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
                 return View();
             }
         }
-
-        
-        public ActionResult Delete(string id) {
+       
+        public ActionResult Delete(string id)
+        {
             Person match = people.Find(p => p.Name == id);
-            if(match != null && people.Contains(match)) {
+            if(match != null && people.Contains(match))
+            {
                 people.Remove(match);
             }
 
@@ -110,14 +116,12 @@ namespace Mvc6.Controllers
             var model = new PersonViewModel { People = peps };
             return PartialView("Index", model);
         }
-
-        
+      
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection) {
+        public ActionResult Delete(int id, FormCollection collection)
+        {
             try
-            {
-                
-
+            {               
                 return RedirectToAction("Index");
             }
             catch
@@ -126,76 +130,77 @@ namespace Mvc6.Controllers
             }
         }
 
-        private static List<Person> people = new List<Person>() {
+        private static List<Person> people = new List<Person>()
+        {
             new Person {
-                Name = "Tonny",
-                Phonenumber = 0738899264,
-                City = "Kiruna"
+                Name = "Mark",
+                Phonenumber = 0501234561,
+                City = "Puls"
             },
             new Person {
-                Name = "Marcus",
-                Phonenumber = 01797896502,
-                City = "Uddevala"
+                Name = "Carl",
+                Phonenumber = 0502345674,
+                City = "Erk"
             },
             new Person {
                 Name = "Jonny",
-                Phonenumber = 0738839564,
-                City = "Umeå"
-            },
-            new Person {
-                Name = "Pontus",
-                Phonenumber = 0735698592,
-                City = "Göteborg"
-            },
-            new Person {
-                Name = "Johan",
-                Phonenumber = 0478965482,
-                City = "Stockholm"
-            },
-            new Person {
-                Name = "Sonny",
-                Phonenumber = 0736895489,
-                City = "Uppsala"
-            },
-            new Person {
-                Name = "George",
-                Phonenumber = 0736948569,
-                City = "Varberg"
+                Phonenumber = 0503456784,
+                City = "Kina"
             },
             new Person {
                 Name = "David",
-                Phonenumber = 0768954852,
-                City = "Malmö"
+                Phonenumber = 0504567897,
+                City = "Lung"
             },
             new Person {
-                Name = "Gustav",
-                Phonenumber = 0789564125,
-                City = "Falun"
-            },
-            new Person {
-                Name = "Hanna",
-                Phonenumber = 0751656984,
-                City = "Karskrona"
-            },
-            new Person {
-                Name = "Stefan",
-                Phonenumber = 0754125693,
-                City = "Borås"
-            },
-            new Person {
-                Name = "Liam",
-                Phonenumber = 0745689213,
-                City = "Eskilstuna"
-            },
-            new Person {
-                Name = "Karl",
-                Phonenumber = 051314151,
+                Name = "Johan",
+                Phonenumber = 0505678906,
                 City = "Stockholm"
             },
             new Person {
-                Name = "Per",
-                Phonenumber = 051415161,
-                City = "Timmele"
+                Name = "Sanna",
+                Phonenumber = 0506789011,
+                City = "Falun"
+            },
+            new Person {
+                Name = "George",
+                Phonenumber = 0507890128,
+                City = "Köping"
+            },
+            new Person {
+                Name = "Tina",
+                Phonenumber = 0508901236,
+                City = "Skara"
+            },
+            new Person {
+                Name = "Oscar",
+                Phonenumber = 0796548231,
+                City = "Kiruna"
+            },
+            new Person {
+                Name = "Hanna",
+                Phonenumber = 0796541352,
+                City = "Stockholm"
+            },
+            new Person {
+                Name = "Ivan",
+                Phonenumber = 0791258632,
+                City = "Moskva"
+            },
+            new Person {
+                Name = "Vladimir",
+                Phonenumber = 0798965230,
+                City = "Russia"
+            },
+            new Person {
+                Name = "Yasamaha",
+                Phonenumber = 0739568923,
+                City = "Japan"
+            },
+            new Person {
+                Name = "Tonny",
+                Phonenumber = 0738956892,
+                City = "China"
             }
         };
     }

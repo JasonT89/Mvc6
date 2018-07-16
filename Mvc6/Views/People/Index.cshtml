@@ -1,5 +1,4 @@
-﻿@model  Mvc6.Models.PersonViewModel
-
+﻿@model Mvc6.Models.PersonViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -17,13 +16,11 @@
     </div>
     <hr />
     <div id="people-list" class="row">
-        @foreach (var person in Model.People)
-         {
+        @foreach (var person in Model.People) {
             @Html.Partial("_ListPeople", person)
-         }
+        }
     </div>
     <div class="row">
         @Html.Partial("_CreateNewPerson")
     </div>
 </div>
-
